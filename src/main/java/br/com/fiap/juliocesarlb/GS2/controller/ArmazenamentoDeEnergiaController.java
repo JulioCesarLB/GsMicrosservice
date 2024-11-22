@@ -2,6 +2,7 @@ package br.com.fiap.juliocesarlb.GS2.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.ecommerce.views.ProdutoFullView;
-import br.com.fiap.ecommerce.views.ProdutoSimpleView;
 import br.com.fiap.juliocesarlb.GS2.dtos.ArmazenamentoEnergiaRequestCreateDto;
 import br.com.fiap.juliocesarlb.GS2.dtos.ArmazenamentoEnergiaRequestUpdateDto;
 import br.com.fiap.juliocesarlb.GS2.dtos.ArmazenamentoEnergiaResponseDto;
@@ -37,8 +36,9 @@ de energia mais eficiente, incluindo smart grids e gest√£o integrada da rede el√
 @RequestMapping("/armazenEnergia")
 @RequiredArgsConstructor
 public class ArmazenamentoDeEnergiaController {
-	
+	@Autowired
 	private ArmazenamentoEnergiaService service;
+	@Autowired
 	private ArmazenamentoEnergiaMapper mapper;
 	private ArmazenamentoEnergiaMapper repository;
 	
@@ -68,9 +68,9 @@ public class ArmazenamentoDeEnergiaController {
 	public ResponseEntity<?> findByNome(@RequestParam String nome, ArmazenamentoEnergiaViewType type) {
 		 switch (type) {
          case VALUES:
-             return ResponseEntity.ok().body(repository.findAllByNomeContains(nome, ProdutoFullView.class));                
+            // return ResponseEntity.ok().body(repository.findAllByNomeContains(nome, ProdutoFullView.class));                
          case INFORMATION:
-             return ResponseEntity.ok().body(repository.findAllByNomeContains(nome, ProdutoSimpleView.class));            
+            // return ResponseEntity.ok().body(repository.findAllByNomeContains(nome, ProdutoSimpleView.class));            
      }
      return ResponseEntity.noContent().build();
 
