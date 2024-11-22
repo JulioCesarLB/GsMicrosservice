@@ -8,11 +8,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ArmazenamentoEnergiaRequestUpdateDto {
-private String tipoEnergia;
 	
+	private String smartGrid;
+	
+	private String tipoEnergia;
+
 	private BigDecimal quantKW;
-	
+
 	private String fornecedor;
-	
+
 	private BigDecimal valor;
 }

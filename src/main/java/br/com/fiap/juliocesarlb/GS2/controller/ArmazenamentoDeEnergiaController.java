@@ -19,7 +19,10 @@ import br.com.fiap.juliocesarlb.GS2.dtos.ArmazenamentoEnergiaRequestCreateDto;
 import br.com.fiap.juliocesarlb.GS2.dtos.ArmazenamentoEnergiaRequestUpdateDto;
 import br.com.fiap.juliocesarlb.GS2.dtos.ArmazenamentoEnergiaResponseDto;
 import br.com.fiap.juliocesarlb.GS2.mapper.ArmazenamentoEnergiaMapper;
+import br.com.fiap.juliocesarlb.GS2.repository.ArmazenamentoEnergiaRepository;
 import br.com.fiap.juliocesarlb.GS2.service.ArmazenamentoEnergiaService;
+import br.com.fiap.juliocesarlb.GS2.views.ArmazenamentoEnergiaInformationView;
+import br.com.fiap.juliocesarlb.GS2.views.ArmazenamentoEnergiaValueView;
 import br.com.fiap.juliocesarlb.GS2.views.ArmazenamentoEnergiaViewType;
 import lombok.RequiredArgsConstructor;
 
@@ -40,7 +43,8 @@ public class ArmazenamentoDeEnergiaController {
 	private ArmazenamentoEnergiaService service;
 	@Autowired
 	private ArmazenamentoEnergiaMapper mapper;
-	private ArmazenamentoEnergiaMapper repository;
+	@Autowired
+	private ArmazenamentoEnergiaRepository repository;
 	
 	@GetMapping
 	public ResponseEntity<List<ArmazenamentoEnergiaResponseDto>> list() {
@@ -65,12 +69,12 @@ public class ArmazenamentoDeEnergiaController {
 	}
 
 	@GetMapping("/find")
-	public ResponseEntity<?> findByNome(@RequestParam String nome, ArmazenamentoEnergiaViewType type) {
+	public ResponseEntity<?> findBySmartGrid(@RequestParam String smartGrid, ArmazenamentoEnergiaViewType type) {
 		 switch (type) {
          case VALUES:
-            // return ResponseEntity.ok().body(repository.findAllByNomeContains(nome, ProdutoFullView.class));                
+             return ResponseEntity.ok().body(repository.findAllBySmartGridContains(smartGrid, ArmazenamentoEnergiaValueView.class));                
          case INFORMATION:
-            // return ResponseEntity.ok().body(repository.findAllByNomeContains(nome, ProdutoSimpleView.class));            
+             return ResponseEntity.ok().body(repository.findAllBySmartGridContains(smartGrid, ArmazenamentoEnergiaInformationView.class));            
      }
      return ResponseEntity.noContent().build();
 

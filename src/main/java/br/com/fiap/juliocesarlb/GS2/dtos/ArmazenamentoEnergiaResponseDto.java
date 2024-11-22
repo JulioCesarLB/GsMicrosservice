@@ -9,7 +9,9 @@ import lombok.Setter;
 @Setter
 public class ArmazenamentoEnergiaResponseDto {
 	private Long id;
-
+	
+	private String smartGrid;
+	
 	private String tipoEnergia;
 
 	private BigDecimal quantKW;

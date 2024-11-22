@@ -8,8 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Data
@@ -18,6 +16,9 @@ public class ArmazenamentoEnergia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(nullable = false, length =50)
+	private String smartGrid;
 	
 	@Column(nullable = false, length =50)
 	private String tipoEnergia;
